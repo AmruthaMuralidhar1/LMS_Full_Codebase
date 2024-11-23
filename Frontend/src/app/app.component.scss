@@ -1,0 +1,12 @@
+.header-and-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .main-content {
+    overflow: auto;
+    background-color: #000028;
+    padding-left: 65px;
+  }
+}

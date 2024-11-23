@@ -1,0 +1,84 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1 class="h5">Dashboard</h1>
+        <ix-date-dropdown [dateRangeOptions]="dateDropdownOptions" date-range-id="last-7" format="LL/dd/yyyy"></ix-date-dropdown>
+    </div>
+
+    <div class="dashboard-metrics row g-2 fw-bold ms-1">
+        <div *ngFor="let metric of metrics" class="metric-card col">
+            <img [src]="metric.icon" [alt]="metric.alt" class="metric-icon">
+            <div class="metric-content">
+                <h3>{{ metric.title }}</h3>
+                <span>{{ metric.value }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-charts row g-2 mt-2 ms-1">
+        <div *ngFor="let chart of charts" [ngClass]="chart.class" class="chart-card col">
+            <img [src]="chart.icon" [alt]="chart.alt" class="chart-icon">
+            <h3>{{ chart.title }}</h3>
+            <div *ngIf="chart.value" class="chart-value">{{ chart.value }}</div>
+            <img [src]="chart.graphSrc" [alt]="chart.graphAlt" [ngClass]="chart.graphClass" class="chart-graph" *ngIf="chart.graphSrc">
+        </div>
+    </div>
+
+    <div class="dashboard-details row g-3 mt-1 px-3">
+        <div class="vehicle-tracking col">
+            <h3>Vehicle Tracking</h3>
+            <form class="needs-validation m-2">
+                <ix-input-group>
+                    <span slot="input-start">
+                        <ix-icon name="search" size="16"></ix-icon>
+                    </span>
+                    <input
+                        [(ngModel)]="customSearch"
+                        name="input"
+                        (ngModelChange)="onInputChange()"
+                        id="input-string"
+                        type="text"
+                        placeholder="Search by ID"
+                        class="form-control"
+                    />
+                    <span slot="input-end">
+                        <ix-icon-button
+                            (click)="clearInput()"
+                            id="clear-button"
+                            icon="clear"
+                            ghost="true"
+                            size="16"
+                            [style.display]="display"
+                        ></ix-icon-button>
+                    </span>
+                </ix-input-group>
+            </form>
+            <ix-select [(ngModel)]="selectedManufacturer" placeholder="Select Manufacturer">
+                <ix-select-item *ngFor="let manufacturer of manufacturers" [label]="manufacturer" [value]="manufacturer"></ix-select-item>
+            </ix-select>
+            
+            <div id="map" class="mt-2">
+                <img src="assets/images/map.jpg" alt="Map Image" class="tracking-map img-fluid">
+            </div>
+        </div>
+
+        <div class="vehicle-status col">
+            <h3>Vehicle Status</h3>
+            <table class="table table-borderless text-white">
+                <thead>
+                    <tr>
+                        <th>Vehicle Number</th>
+                        <th>Status</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of vehicles">
+                        <td>{{ vehicle.number }}</td>
+                        <td>{{ vehicle.status }}</td>
+                        <td>{{ vehicle.location }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

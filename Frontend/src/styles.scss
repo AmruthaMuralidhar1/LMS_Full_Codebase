@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+
+html,
+body {
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  background-color: #000028;
+}
+
+.heading {
+  color: white;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ix-breadcrumb-item{
+
+ :host(li){
+  background-color:green;
+  .btn,.btn-invisible-primary{
+    background-color:pink;
+    ::ng-deep .content{
+      color: red;
+      background-color: white;
+    }
+  }
+ }
+  
+}

@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <h3 class="heading">Indents</h3>
+  <div class="tabs">
+    <ix-tabs [selected]="selectedTab">
+      <ix-tab-item (click)="selectTab(0)">New Indents</ix-tab-item>
+      <ix-tab-item (click)="selectTab(1)">Subscribed Indents</ix-tab-item>
+    </ix-tabs>
+    <div *ngIf="selectedTab === 0">
+      <app-new-indents></app-new-indents>
+    </div>
+    <div *ngIf="selectedTab === 1">
+      <app-subscribed-indents></app-subscribed-indents>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="indents-container">
+  <!-- <div class="dropdown">
+    <button class="dropdown-toggle" (click)="toggleDropdown()">
+      {{ selectedManufacturer || "Select manufacturer" }}
+    </button>
+    <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
+      <ul>
+        <li (click)="selectManufacturer('')">
+          <a>All</a>
+        </li>
+        <li *ngFor="let manufacturer of manufacturers" (click)="selectManufacturer(manufacturer)">
+          <a>{{ manufacturer }}</a>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+  <ix-select
+    [value]="selectedManufacturer"
+    (itemClick)="onManufacturerChange($event)"
+    i18nPlaceholder="Select Manufacturer"
+  >
+    <ix-select-item
+      label="Select All"
+      value="Select All"
+      selected
+    ></ix-select-item>
+    <ix-select-item
+      *ngFor="let warehouse of warehouseNames"
+      [label]="warehouse"
+      [value]="warehouse"
+    >
+      {{ warehouse }}
+    </ix-select-item>
+  </ix-select>
+  <div *ngIf="!fetchError && displayedData.length === 0">
+    <ix-empty-state
+      header="No Indents available for the selected manufacturer."
+    ></ix-empty-state>
+  </div>
+  <div class="orders-list" *ngIf="totalItems > 0">
+    <div *ngFor="let indent of displayedData">
+      <div class="order-container">
+        <div class="order-header">
+          <div class="order-id">
+            <span>{{ "DO" + (indent?.soId || "N/A") }}</span>
+          </div>
+        </div>
+        <div class="order-content">
+          <div class="order-info">
+            <div class="location">
+              <span class="pickuplocation">Pickup Destination</span>
+              <span class="pickup-destination">{{
+                indent.pickupLocation
+              }}</span>
+              <p
+                style="
+                  margin-left: 5px;
+                  margin-right: 10px;
+                  color: white;
+                  margin-top: 30px;
+                "
+              >
+                <ix-icon name="arrow-right" size="32"></ix-icon>
+              </p>
+              <span class="droplocation">Drop Destination</span>
+              <span class="drop-destination">{{ indent.dropLocation }}</span>
+            </div>
+            <div class="tags">
+              <span class="tag" *ngFor="let tag of indent.tags">{{ tag }}</span>
+            </div>
+            <div class="order-details">
+              <div class="detail">
+                <span class="label">Quantity</span>
+                <span>{{ indent.quantity + " tonnes" }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Distance</span>
+                <span>{{ indent.distance }} km</span>
+              </div>
+              <div class="detail">
+                <span class="label">Loading date & time</span>
+                <span>{{ indent.loadingDateTime }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Unloading date & time</span>
+                <span>{{ indent.unloadingDateTime }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Bid Start Amount</span>
+                <span>₹ {{ indent.bidStartAmount }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Bid Close Amount</span>
+                <span>₹ {{ indent.bidCloseAmount }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-action">
+            <button class="route-btn" (click)="onRouteButtonClick(indent)">
+              Place a bid
+            </button>
+            <div class="timer-section">
+              <ix-icon name="alarm-clock" size="24"></ix-icon>
+              <span class="timer-display">{{ indent.remainingTime }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-wrapper">
+      <app-pagination
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="totalItems"
+        (pageSelected)="onPageChange($event)"
+        (itemCountChanged)="onItemCountChange($event)"
+      >
+      </app-pagination>
+    </div>
+  </div>
+</div>

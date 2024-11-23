@@ -1,0 +1,26 @@
+<section class="indent-details">
+  <header>
+    <span *ngFor="let type of tags" class="type">{{ type }}</span>
+  </header>
+  <main>
+    <div class="route-info">
+      <span>
+        <p>Pickup Destination</p>
+        <p style="font-size: 16px; color: white;">{{ pickupLocation }}</p>
+      </span>
+      <p style="margin-left: 5px; margin-right: 10px; color: white;">
+        <ix-icon name="arrow-right" size="32"></ix-icon>
+      </p>
+      <span>
+        <p>Drop Destination</p>
+        <p style="font-size: 16px; color: white;">{{ dropLocation }}</p>
+      </span>
+    </div>
+    <div class="additional-info">
+      <span class="additional-item" *ngFor="let item of additionalItems">
+        <p>{{ item.label }}</p>
+        <strong style="color: white;">{{ item.value }}</strong>
+      </span>
+    </div>
+  </main>
+</section>

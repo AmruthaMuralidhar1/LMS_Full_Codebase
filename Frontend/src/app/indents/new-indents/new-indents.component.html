@@ -1,0 +1,43 @@
+<div class="indents-container">
+  <div class="tab-content">
+    <div class="filter-btn">
+      <button
+        class="tab-button"
+        [class.active]="currentPageTab === 'fixed price'"
+        (click)="setPage('fixed price')"
+      >
+        Fixed price
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="currentPageTab === 'bidding'"
+        (click)="setPage('bidding')"
+      >
+        Bidding
+      </button>
+    </div>
+
+    <!-- Displaying fixed price indents -->
+    <div *ngIf="currentPageTab === 'fixed price'" class="fixed price">
+      <app-fixed-indents></app-fixed-indents>
+    </div>
+
+    <!-- Displaying bidding indents -->
+    <div *ngIf="currentPageTab === 'bidding'" class="bidding">
+      <app-bidding></app-bidding>
+    </div>
+
+    <!-- Pagination Component -->
+    <!-- <div class="pagination-container">
+      <app-pagination
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="totalItems"
+        (pageSelected)="onPageChange($event)"
+        (itemCountChanged)="onItemCountChange($event)"
+      >
+      </app-pagination>
+    </div> -->
+  </div>
+</div>
+<router-outlet></router-outlet>

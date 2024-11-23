@@ -1,0 +1,68 @@
+<div class="dispatch">
+  <h1 class="header-title">Indents</h1>
+  <ix-breadcrumb visibleItemCount="3" class="breadcrumbs">
+    <ix-breadcrumb-item [routerLink]="['/indents']" label="New Indents"></ix-breadcrumb-item>
+    <ix-breadcrumb-item [routerLink]="['/indents']" label="Fixed Price"></ix-breadcrumb-item>
+    <ix-breadcrumb-item>{{ 'DO' + (indent?.soId || 'N/A') }}</ix-breadcrumb-item>
+  </ix-breadcrumb>
+
+  <div class="dispatch-info-container">
+    <app-indent-details
+    [pickupLocation]="indent?.pickupLocation || 'N/A'"
+    [dropLocation]="indent?.dropLocation || 'N/A'"
+    [tags]="indent?.tags || ['N/A']"
+    [quantity]="indent?.quantity || 'N/A'"
+    [distance]="indent?.distance || 'N/A'"
+    [loadingDateTime]="indent?.loadingDateTime || 'N/A'"
+    [unloadingDateTime]="indent?.unloadingDateTime || 'N/A'"
+    [bidStartAmount]="indent?.bidStartAmount || 'N/A'"
+    [bidCloseAmount]="indent?.bidCloseAmount || 'N/A'"
+    [isBidding]="false" 
+    [totalAmount]="indent?.totalAmount|| 'N/A'"
+    [amountPerKm]="indent?.amountPerKm || 'N/A'"
+  ></app-indent-details>
+  </div>
+
+  <section class="dispatch-details">
+    <h3>Dispatch Details</h3>
+    <p class="heading">Consigner Address</p>
+    <p class="content">{{ indent.pickupLocation || 'N/A' }}</p>
+    <p class="heading">Consignee Address</p>
+    <p class="content">{{ indent.dropLocation || 'N/A' }}</p>
+    <p class="heading">Dispatch Details</p>
+    <p class="content">{{ indent.dispatchDetails || 'N/A' }}</p>
+    <button class="schedule-trip" (click)="onScheduleTrip()">Schedule Trip</button>
+  </section>
+  <figure class="map">
+    <app-map [pickupLocation]="indent?.pickupLocation || 'N/A'" [dropLocation]="indent?.dropLocation || 'N/A'"></app-map>
+  </figure>
+  
+  <!-- Confirmation Modal -->
+  <ng-template #confirmModal let-modal>
+    <ix-modal class="custom-modal" >
+      <ix-modal-header>Confirm Trip Schedule</ix-modal-header>
+      <ix-modal-content>
+        <img src="assets/images/confirm.png" alt="Confirm" class="modal-image"/>
+        Are you sure you want to schedule this trip?
+      </ix-modal-content>
+      <ix-modal-footer>
+        <button outline (click)="modal.dismiss('cancel')" class="cancel">Cancel</button>
+        <button (click)="modal.close('confirm')" class="yes">Yes</button>
+      </ix-modal-footer>
+    </ix-modal>
+  </ng-template>
+  <!-- Success Modal -->
+  <ng-template #successModal let-modal>
+    <ix-modal class="custom-modal">
+      <ix-modal-header>Trip Scheduled</ix-modal-header>
+      <ix-modal-content>
+        <img src="assets/images/success.png" alt="Success" class="modal-image"/>
+        The trip has been scheduled successfully.
+      </ix-modal-content>
+      <ix-modal-footer>
+        <button outline (click)="modal.dismiss('cancel')" class="cancel">Cancel</button>
+        <button (click)="modal.close('ok')" class="yes">OK</button>
+      </ix-modal-footer>
+    </ix-modal>
+  </ng-template>
+</div>

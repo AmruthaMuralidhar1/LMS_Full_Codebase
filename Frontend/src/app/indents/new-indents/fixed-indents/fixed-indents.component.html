@@ -1,0 +1,127 @@
+<!-- <ix-select
+  [value]="selectedManufacturer"
+  (itemClick)="onManufacturerChange($event)"
+  i18nPlaceholder="Select Manufacturer"
+>
+  <ix-select-item
+    label="Select All"
+    value="Select All"
+    selected
+  ></ix-select-item>
+  <ix-select-item
+    *ngFor="let warehouse of warehouseNames"
+    [label]="warehouse"
+    [value]="warehouse"
+  >
+    {{ warehouse }}
+  </ix-select-item>
+</ix-select> -->
+
+<div class="indents-container">
+  <ix-select
+    [value]="selectedManufacturer"
+    (itemClick)="onManufacturerChange($event)"
+    i18nPlaceholder="Select Manufacturer"
+  >
+    <ix-select-item
+      label="Select All"
+      value="Select All"
+      selected
+    ></ix-select-item>
+    <ix-select-item
+      *ngFor="let warehouse of warehouseNames"
+      [label]="warehouse"
+      [value]="warehouse"
+    >
+      {{ warehouse }}
+    </ix-select-item>
+  </ix-select>
+  <div *ngIf="!fetchError && displayedData.length === 0">
+    <ix-empty-state
+      header="No Indents available for the selected manufacturer."
+    ></ix-empty-state>
+  </div>
+  <div class="orders-list">
+    <div *ngFor="let indent of displayedData">
+      <div class="order-container">
+        <div class="order-header">
+          <div class="order-id">
+            <span>{{ "DO" + (indent?.soId || "N/A") }}</span>
+          </div>
+        </div>
+        <div class="order-content">
+          <div class="order-info">
+            <div class="location">
+              <span class="pickuplocation">Pickup Destination</span>
+              <span class="pickup-destination">{{
+                indent.pickupLocation || "N/A"
+              }}</span>
+              <p
+                style="
+                  margin-left: 5px;
+                  margin-right: 10px;
+                  color: white;
+                  margin-top: 30px;
+                "
+              >
+                <ix-icon name="arrow-right" size="32"></ix-icon>
+              </p>
+              <span class="droplocation">Drop Destination</span>
+              <span class="drop-destination">{{
+                indent.dropLocation || "N/A"
+              }}</span>
+            </div>
+            <div class="tags">
+              <span class="tag" *ngFor="let tag of indent.tags || []">{{
+                tag
+              }}</span>
+            </div>
+            <div class="order-details">
+              <div class="detail">
+                <span class="label">Quantity</span>
+                <span>{{ indent.quantity || "N/A" }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Distance</span>
+                <span>{{ indent.distance || "N/A" }} km</span>
+              </div>
+              <div class="detail">
+                <span class="label">Loading date & time</span>
+                <span>{{ indent.loadingDateTime || "N/A" }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Unloading date & time</span>
+                <span>{{ indent.unloadingDateTime || "N/A" }}</span>
+              </div>
+              <div class="detail">
+                <span class="label">Quoted amount</span>
+                <span
+                  >₹ {{ indent.totalAmount || "N/A" }} &nbsp;&nbsp; ₹{{
+                    indent.amountPerKm | number : "1.2-2" || "N/A"
+                  }}/km</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="order-action">
+            <button class="route-btn" (click)="onRouteButtonClick(indent)">
+              Pickup a route
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pagination-wrapper">
+  <!-- <ix-pagination advanced showItemCount count="10"></ix-pagination> -->
+  <app-pagination
+    [currentPage]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="totalItems"
+    (pageSelected)="onPageChange($event)"
+    (itemCountChanged)="onItemCountChange($event)"
+  >
+  </app-pagination>
+</div>

@@ -1,0 +1,55 @@
+<div class="header">
+  <img
+    src="\assets\images\siemens-logo.png"
+    alt="Logo"
+    class="logo-image"
+  />
+</div>
+<div class="login-container">
+  <img
+    src="\assets\images\login_page.jpg"
+    alt="Login Background"
+    class="background-image"
+  />
+  <div class="login-form">
+    <h1>FleetMaster</h1>
+    <form
+      [ngClass]="{ 'was-validated': wasValidated }"
+      no-validate
+      (submit)="onSubmit($event)"
+    >
+      <div class="username">
+        <input
+          name="username"
+          type="text"
+          id="username"
+          [(ngModel)]="data.username"
+          #username="ngModel"
+          required
+          placeholder="Username"
+        />
+      </div>
+      <div class="password">
+        <input
+          name="password"
+          type="password"
+          id="password"
+          aria-describedby="inputGroupPrepend"
+          [(ngModel)]="data.password"
+          #password="ngModel"
+          required
+          placeholder="Password"
+        />
+        <div class="invalid-feedback">Enter Password !</div>
+      </div>
+      <ix-message-bar
+        *ngIf="error"
+        style="margin-bottom: 0.5rem; display: block"
+        type="danger"
+        >{{ error }}</ix-message-bar
+      >
+      <ix-button variant="primary" type="submit">Log In</ix-button>
+    </form>
+  </div>
+</div>
+<p class="version">Version 3.01 © 2021-2023 Siemens AG</p>

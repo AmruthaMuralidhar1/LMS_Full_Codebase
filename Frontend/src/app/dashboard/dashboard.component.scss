@@ -1,0 +1,218 @@
+:root {
+    font-size: 16px; 
+}
+
+.dashboard-container {
+    margin-left: 1.375rem;
+    color: #ffffff;
+    max-height: 100%;
+    background-color: #000028;
+    overflow: hidden; 
+    box-sizing: border-box;
+    margin-top: 1rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.625rem; 
+
+    h1 {
+        font-size: 1.25rem;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    ix-date-dropdown {
+        margin-right: 1.5625rem;
+    }
+}
+
+.dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.625rem;
+    font-weight: 600;
+
+    .metric-card {
+        height: 6.625rem;
+        width: 20.525rem;
+        background-color: #242842;
+        padding: 1.25rem;
+        border-radius: 0.5rem; 
+        box-sizing: border-box; 
+        
+        .metric-content {
+            h3 {
+                font-size: 0.9375rem;
+                color: #00CCCC;
+                margin-bottom: 0.625rem;
+                display: flex;
+                align-items: center;
+                margin-left: 3.125rem;
+                margin-top: -1.5625rem;
+                margin-bottom: 0.825rem;
+                font-weight: 600;
+            }
+
+            span {
+                font-size: 2.1875rem;
+                font-weight: 400;
+                color: #ffffff;
+                padding-left: 5.625rem;
+            }
+        }
+    }
+}
+
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 0.625rem;
+    box-sizing: border-box;
+
+    .chart-card, .chart-card1 {
+        background-color: #242842;
+        padding: 1.25rem;
+        border-radius: 0.5rem; 
+        position: relative;
+        box-sizing: border-box; 
+
+        h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #00CCCC;
+            margin-bottom: 0.625rem;
+            margin-left: 3.125rem;
+            margin-top: -1.5625rem;
+        }
+
+        .chart-value {
+            font-size: 2.1875rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-left: 5.625rem;
+            padding-top: 0.3125rem;
+        }
+    }
+
+    .chart-card {
+        height: 9.375rem;
+        width: 20.525rem;
+    }
+
+    .chart-card1 {
+        height: 6.625rem;
+        width: 20.525rem;
+    }
+
+    .fuel-graph {
+        width: 17.5rem;
+        height: 6.1875rem;
+        margin-top: 0;
+        padding-bottom: 0.625rem;
+    }
+
+    .indents_req-graph {
+        margin-left: 5.3125rem;
+        width: 6.25rem;
+        height: 6.25rem;
+        margin-top: 0;
+        padding-bottom: 0.625rem;
+    }
+}
+
+.dashboard-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9375rem;
+    padding-top: 1rem; 
+    padding: 1rem;
+
+    .vehicle-tracking, .vehicle-status {
+        background-color: #242842;
+        padding: 1.25rem;
+        border-radius: 0.5rem; 
+        box-sizing: border-box; 
+
+        h3 {
+            font-size: 0.9375rem;
+            margin-bottom: 0.5rem;
+            color: #00CCCC;
+        }
+    }
+
+    .vehicle-tracking {
+        width: 45.875rem;
+        height: 18rem;
+    }
+
+    .vehicle-status {
+        width: 98%;
+        height: 18rem;
+
+        table {
+            width: 100%;
+            color: #ffffff;
+            border-collapse: collapse;
+
+            th, td {
+                padding: 0.525rem;
+                text-align: left;
+                border-bottom: 0.0625rem solid #33354E;
+            }
+
+            :last-child td {
+                border-bottom: none;
+            }
+
+            th {
+                color: white;
+                font-weight: 300;
+                font-size: 0.75rem;
+                border-bottom: 0.0625rem solid #00CCCC;
+            }
+
+            td {
+                color: #ffffff;
+                font-size: 0.625rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .vehicle-tracking, .vehicle-status {
+        padding: 1rem;
+    }
+    
+    .vehicle-tracking h3, .vehicle-status h3 {
+        font-size: 0.875rem;
+    }
+}
+
+ix-input-group {
+    width: 15rem;
+    margin-right: 0;
+}
+
+ix-select {
+    width: 15rem;
+    padding-left: 0;
+    right: 6.25rem;
+    left: 17.5rem;
+    bottom: 2.5rem;
+}
+
+.tracking-map {
+    margin-top: -1.25rem;
+    width: 38.5rem;
+    height: 10.375rem;
+}

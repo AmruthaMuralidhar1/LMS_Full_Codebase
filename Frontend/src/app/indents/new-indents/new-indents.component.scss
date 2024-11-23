@@ -1,0 +1,184 @@
+.indents-container {
+  padding: 20px;
+
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+
+    .tab-button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.active {
+        border-bottom: 2px solid cyan;
+      }
+
+      &:hover {
+        background-color: #1e1e2d;
+      }
+    }
+  }
+
+  .tab-content {
+    .filter-btn {
+      display: flex;
+      margin-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+
+      .tab-button {
+        background: none;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &.active {
+          border-bottom: 2px solid cyan;
+        }
+
+        &:hover {
+          background-color: #1e1e2d;
+        }
+      }
+    }
+  }
+
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    flex-grow: 1;
+
+    .order-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #9d9d9633;
+      padding: 28px;
+      margin: 10px 0;
+      color: white;
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .order-id {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+
+      .order-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .order-info {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+
+          .location {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: nowrap;
+
+            .pickuplocation,
+            .droplocation {
+              color: #ffffff99;
+              display: block;
+              font-weight: bold;
+              margin-right: 10px;
+            }
+
+            .pickup-destination {
+              margin-top: 50px;
+              margin-left: -143px;
+              display: block;
+              margin-bottom: 5px;
+            }
+            .drop-destination {
+              margin-top: 50px;
+              margin-left: -130px;
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            .arrow {
+              margin: 0 10px;
+            }
+          }
+
+          .tags {
+            margin-top: -110px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            .tag {
+              background-color: #9d9d9633;
+              color: #00cccc;
+              padding: 5px 10px;
+              border-radius: 15px;
+              border: 1px solid #00cccc; // Added border property
+            }
+          }
+        }
+      }
+
+      .order-details {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .detail {
+          display: flex;
+          flex-direction: column;
+
+          .label {
+            margin-bottom: 5px;
+            color: #ffffff99;
+          }
+        }
+      }
+
+      .order-action {
+        .route-btn {
+          background-color: #00cccc;
+          color: #2b2d3c;
+          border: none;
+          border-radius: 10px;
+          padding: 10px 20px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #2b2d3c;
+            color: #00cccc; // Changed color on hover
+          }
+        }
+      }
+    }
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px; 
+  }
+  
+  .pagination-container app-pagination {
+    width: auto; 
+  }
+  
+}
+
+

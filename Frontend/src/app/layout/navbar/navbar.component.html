@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="menu">
+    <img src="assets/images/menu.jpg" alt="Menu Icon">
+  </div>
+  <ul>
+    <li *ngFor="let item of menuItems; let first = first" 
+        [ngClass]="{'active': activeItem === item.route , 'temporary-style': first && firstItemHighlighted}" 
+        (click)="setActiveItem(item.route)">
+      <a [routerLink]="[item.route]">
+        <div class="icon-container">
+          <img [src]="item.imgpath" [alt]="item.title + ' Icon'">
+          <span class="icon-name">{{ item.title }}</span> 
+        </div>
+      </a>
+    </li>
+  </ul>
+</nav>

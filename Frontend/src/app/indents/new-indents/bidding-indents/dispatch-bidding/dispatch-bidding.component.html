@@ -1,0 +1,70 @@
+<div class="dispatch">
+  <h1 class="header-title">Indents</h1>
+  <ix-breadcrumb visibleItemCount="3" class="breadcrumbs">
+    <ix-breadcrumb-item
+      [routerLink]="['/indents']"
+      label="New Indents"
+    ></ix-breadcrumb-item>
+    <ix-breadcrumb-item
+      [routerLink]="['/indents']"
+      label="Bidding"
+    ></ix-breadcrumb-item>
+    <ix-breadcrumb-item>{{
+      "DO" + (indent?.soId || "N/A")
+    }}</ix-breadcrumb-item>
+  </ix-breadcrumb>
+  <ix-message-bar *ngIf="errorMessage" type="danger">
+    {{ errorMessage }}
+  </ix-message-bar>
+
+  <div class="dispatch-info-container">
+    <app-indent-details
+      [pickupLocation]="indent?.pickupLocation || 'N/A'"
+      [dropLocation]="indent?.dropLocation || 'N/A'"
+      [tags]="indent?.tags || ['N/A']"
+      [quantity]="indent?.quantity || 'N/A'"
+      [distance]="indent?.distance || 'N/A'"
+      [loadingDateTime]="indent?.loadingDateTime || 'N/A'"
+      [unloadingDateTime]="indent?.unloadingDateTime || 'N/A'"
+      [bidStartAmount]="indent?.bidStartAmount || 'N/A'"
+      [bidCloseAmount]="indent?.bidCloseAmount || 'N/A'"
+      [isBidding]="true"
+    ></app-indent-details>
+  </div>
+
+  <section class="dispatch-details">
+    <h3>Dispatch Details</h3>
+    <p class="heading">Consigner Address</p>
+    <p class="content">{{ indent.pickupLocation || "N/A" }}</p>
+
+    <p class="heading">Consignee Address</p>
+    <p class="content">{{ indent.dropLocation || "N/A" }}</p>
+
+    <p class="heading">Dispatch Details</p>
+    <p class="content">
+      {{ indent.dispatchDetails || "No dispatch details available" }}
+    </p>
+
+    <ix-slider
+      [value]="indent?.bidStartAmount"
+      [min]="indent?.bidStartAmount"
+      [max]="indent?.bidCloseAmount"
+      trace="true"
+      [traceReference]="indent?.bidStartAmount"
+      (valueChange)="onBiddingPriceChange($event)"
+    >
+      <span slot="label-start">Rs {{ indent?.bidStartAmount }}</span>
+      <span slot="label-end">Rs {{ indent?.bidCloseAmount }}</span>
+    </ix-slider> 
+    <ix-key-value icon="triangle-filled" label="Bidding price" value="{{ this.biddingPrice }}"></ix-key-value>
+    <br/>
+    <button class="schedule-trip" (click)="onSubmitBidding()">Place Bid</button>
+  </section>
+
+  <figure class="map">
+    <app-map
+      [pickupLocation]="indent?.pickupLocation || 'N/A'"
+      [dropLocation]="indent?.dropLocation || 'N/A'"
+    ></app-map>
+  </figure>
+</div>

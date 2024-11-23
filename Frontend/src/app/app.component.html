@@ -1,0 +1,12 @@
+<div *ngIf="!(loginService.wasValidated$ | async)">
+  <app-login></app-login>
+</div>
+<div class="after-login" *ngIf="loginService.wasValidated$ | async">
+  <app-navbar></app-navbar>
+  <div class="header-and-content">
+    <app-header></app-header>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
